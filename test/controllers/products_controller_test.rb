@@ -15,11 +15,13 @@ class ProductsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:products)
+    assert_select 'dt', 'Programming Ruby 1.9'
   end
 
   test "should get new" do
     get :new
     assert_response :success
+    assert_select 'h1', 'New product'
   end
 
   test "should create product" do
@@ -33,6 +35,7 @@ class ProductsControllerTest < ActionController::TestCase
   test "should show product" do
     get :show, id: @product
     assert_response :success
+    assert_select 'p strong', 'Description:'
   end
 
   test "should get edit" do
